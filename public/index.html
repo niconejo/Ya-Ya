@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ya-Ya | Emprendimientos cerca de ti</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  >
+
+  <link rel="stylesheet" href="/css/estilos.css">
+</head>
+
+<body>
+  <header class="barra-superior">
+    <a class="logo" href="/">Ya-Ya<span>•</span></a>
+
+    <nav>
+      <a href="#explorar">Explorar</a>
+      <a href="#como-funciona">Cómo funciona</a>
+
+      <button id="btnPublicar" class="btn btn-secundario">
+        Publicar emprendimiento
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-contenido">
+        <p class="etiqueta">CONÉCTATE CON LO LOCAL</p>
+
+        <h1>
+          Encuentra algo increíble
+          <em>cerca de ti.</em>
+        </h1>
+
+        <p class="hero-texto">
+          Descubre emprendimientos, servicios y productos de personas con talento en tu comunidad.
+        </p>
+
+        <button id="btnUbicacionHero" class="btn btn-principal">
+          Buscar cerca de mí <span>→</span>
+        </button>
+      </div>
+
+      <div class="hero-forma" aria-hidden="true">
+        <div class="circulo circulo-1"></div>
+        <div class="circulo circulo-2"></div>
+
+        <div class="tarjeta-flotante tarjeta-1">
+          ✦ Hecho con cariño
+        </div>
+
+        <div class="tarjeta-flotante tarjeta-2">
+          ⌖ Cerca de ti
+        </div>
+      </div>
+    </section>
+
+    <section id="explorar" class="explorar seccion">
+      <div class="encabezado-seccion">
+        <div>
+          <p class="etiqueta">DESCUBRE</p>
+          <h2>Emprendimientos cerca de ti</h2>
+        </div>
+
+        <button id="btnUbicacion" class="btn btn-ubicacion">
+          ⌖ Usar mi ubicación
+        </button>
+      </div>
+
+      <div class="filtros">
+        <input
+          id="inputBusqueda"
+          type="search"
+          placeholder="Buscar emprendimiento..."
+        >
+
+        <select id="selectCategoria">
+          <option value="">Todas las categorías</option>
+          <option value="Repostería">Repostería</option>
+          <option value="Diseño">Diseño</option>
+          <option value="Belleza">Belleza</option>
+          <option value="Artesanía">Artesanía</option>
+        </select>
+
+        <select id="selectRadio">
+          <option value="1000">A menos de 1 km</option>
+          <option value="5000" selected>A menos de 5 km</option>
+          <option value="10000">A menos de 10 km</option>
+          <option value="50000">A menos de 50 km</option>
+        </select>
+      </div>
+
+      <div id="mensaje" class="mensaje">
+        Cargando emprendimientos...
+      </div>
+
+      <div class="contenido-explorar">
+        <div id="listaEmprendedores" class="lista-emprendedores"></div>
+
+        <div id="mapa" class="mapa"></div>
+      </div>
+    </section>
+
+    <section id="como-funciona" class="como-funciona seccion">
+      <p class="etiqueta">SIMPLE Y CERCANO</p>
+
+      <h2>Así funciona Ya-Ya</h2>
+
+      <div class="pasos">
+        <article class="paso">
+          <span>01</span>
+          <h3>Explora</h3>
+          <p>
+            Busca productos y servicios según lo que necesitas.
+          </p>
+        </article>
+
+        <article class="paso">
+          <span>02</span>
+          <h3>Descubre</h3>
+          <p>
+            Conoce emprendimientos cerca de tu ubicación.
+          </p>
+        </article>
+
+        <article class="paso">
+          <span>03</span>
+          <h3>Conecta</h3>
+          <p>
+            Contacta directamente y apoya el talento local.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div id="modalPublicar" class="modal oculto">
+    <div class="modal-contenido">
+      <button id="btnCerrarModal" class="cerrar">
+        ×
+      </button>
+
+      <p class="etiqueta">ÚNETE A YA-YA</p>
+
+      <h2>Publica tu emprendimiento</h2>
+
+      <form id="formPublicar">
+        <input
+          name="nombre"
+          placeholder="Nombre del emprendimiento"
+          required
+        >
+
+        <input
+          name="categoria"
+          placeholder="Categoría"
+          required
+        >
+
+        <textarea
+          name="descripcion"
+          placeholder="Describe tu emprendimiento"
+        ></textarea>
+
+        <input
+          name="direccion"
+          placeholder="Dirección o comuna"
+        >
+
+        <input
+          name="telefono"
+          placeholder="Teléfono"
+        >
+
+        <div class="fila-formulario">
+          <input
+            name="latitud"
+            type="number"
+            step="any"
+            placeholder="Latitud"
+            required
+          >
+
+          <input
+            name="longitud"
+            type="number"
+            step="any"
+            placeholder="Longitud"
+            required
+          >
+        </div>
+
+        <button class="btn btn-principal" type="submit">
+          Publicar emprendimiento
+        </button>
+      </form>
+
+      <p id="mensajeFormulario" class="mensaje"></p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="logo">
+      Ya-Ya<span>•</span>
+    </div>
+
+    <p>
+      Conectando personas, impulsando sueños.
+    </p>
+  </footer>
+
+  <!-- Leaflet se carga una sola vez -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <!-- Archivo JavaScript de Ya-Ya -->
+  <script src="/js/mapa-leaflet.js"></script>
+</body>
+</html>

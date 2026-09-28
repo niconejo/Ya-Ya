@@ -2,7 +2,15 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { HealthModule } from './health/health.module';
-import { UsersModule } from './users/users.module';
+import { UsuariosModule } from './usuarios/usuarios.module';
+import { CatalogoModule } from './catalogo/catalogo.module';
+import { AgendaModule } from './agenda/agenda.module';
+import { CotizacionesModule } from './cotizaciones/cotizaciones.module';
+import { ResenasModule } from './resenas/resenas.module';
+import { SocialModule } from './social/social.module';
+import { PagosModule } from './pagos/pagos.module';
+import { AdministracionModule } from './administracion/administracion.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -29,7 +37,15 @@ import { UsersModule } from './users/users.module';
     }),
 
     HealthModule,
-    UsersModule,
+    UsuariosModule,
+    AuthModule,
+    CatalogoModule,
+    AgendaModule,
+    CotizacionesModule,
+    ResenasModule,
+    SocialModule,
+    PagosModule,
+    AdministracionModule,
   ],
 })
 export class AppModule {}

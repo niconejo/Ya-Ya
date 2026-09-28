@@ -16,7 +16,7 @@ export enum UserRole {
  * (Modelado y creación de base de datos) — desde acá se desprenden
  * los perfiles de Emprendedor y Cliente definidos en el alcance del MVP.
  */
-@Entity('users')
+@Entity('usuarios')
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
